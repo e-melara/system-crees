@@ -3,7 +3,7 @@ import { Col, Input, Form } from 'antd'
 
 const { TextArea } = Input
 
-interface InputTypeInterface {
+interface TextAreaTypeInterface {
   column: { span: number }
   item: {
     name: string
@@ -20,7 +20,7 @@ interface InputTypeInterface {
   }
 }
 
-export const TextAreaType: React.FC<InputTypeInterface> = ({
+export const TextAreaType: React.FC<TextAreaTypeInterface> = ({
   column,
   item,
   input

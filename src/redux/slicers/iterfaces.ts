@@ -20,6 +20,7 @@ export interface StepsState {
   current: number
   items: ItemElement[]
   familiares: Familiar[]
+  poseeInmuebles: boolean
   bienesInmuebles: BieneInmueble[]
   estado: 'wait' | 'process' | 'finish' | 'error'
 }

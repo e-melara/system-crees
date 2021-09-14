@@ -5,6 +5,7 @@ import { BieneInmueble, Familiar, StepsState } from './iterfaces'
 
 const initialState: StepsState = {
   current: 0,
+  poseeInmuebles: true,
   estado: 'process',
   items: [
     {
@@ -49,9 +50,17 @@ const stepsSlicer = createSlice({
     },
 
     // bienes inmuebles
-    addBienInmueble(state) {}
+    addBienInmueble(state, action: PayloadAction<BieneInmueble>) {
+      const { payload } = action
+      payload.id = v4()
+      state.bienesInmuebles.push(payload)
+    },
+    changeStatus(state) {
+      state.poseeInmuebles = !state.poseeInmuebles
+    }
   }
 })
 
 export default stepsSlicer.reducer
-export const { next, prev, errorStatus, add, addBienInmueble } = stepsSlicer.actions
+export const { next, prev, errorStatus, add, addBienInmueble, changeStatus } =
+  stepsSlicer.actions

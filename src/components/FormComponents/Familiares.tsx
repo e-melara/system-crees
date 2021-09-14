@@ -4,7 +4,6 @@ import { PlusCircleFilled, PlusOutlined } from '@ant-design/icons'
 
 import { H1Title } from 'src/styles'
 import { add, next, prev } from 'src/redux/slicers/steps'
-import { Familiar } from '../../redux/slicers/iterfaces'
 import { useAppSelector, useAppDispatch } from 'src/redux/hooks'
 import { InputType, SelectType, InputNumberType } from 'src/components/common'
 
