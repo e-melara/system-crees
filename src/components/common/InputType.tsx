@@ -1,32 +1,32 @@
-import React from "react";
-import { Col, Input, Form } from "antd";
+import React from 'react'
+import { Col, Input, Form } from 'antd'
 
 interface InputTypeInterface {
-  column: { span: number };
+  column: { span: number }
   item: {
-    name: string;
-    label: string;
-    extra?: string;
-    rules?: Array<Object>;
-  };
+    name: string
+    label: string
+    extra?: string
+    rules?: Array<Object>
+  }
   input: {
-    allowClear?: boolean;
-    placeholder: string;
-    disabled?: boolean;
-  };
+    allowClear?: boolean
+    placeholder: string
+    disabled?: boolean
+  }
 }
 
 export const InputType: React.FC<InputTypeInterface> = ({
   column,
   item,
-  input,
+  input
 }) => {
   return (
     <Col {...column}>
       <Form.Item {...item}>
-      {/* <Form.Item > */}
+        {/* <Form.Item > */}
         <Input {...input} />
       </Form.Item>
     </Col>
-  );
-};
+  )
+}
