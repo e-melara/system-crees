@@ -1,28 +1,28 @@
-import { v4 } from 'uuid'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-import { BieneInmueble, Familiar, StepsState } from './iterfaces'
+import { StepsState } from './interfaces'
 
 const initialState: StepsState = {
   current: 0,
-  poseeInmuebles: true,
   estado: 'process',
   items: [
     {
-      title: 'Step 01',
-      description: 'Basic Details'
+      title: 'Paso 1',
+      description: 'Centro Escolar'
     },
     {
-      title: 'Step 02',
-      description: 'Datos Familiares'
+      title: 'Paso 2',
+      description: 'Equipos'
     },
     {
-      title: 'Step 03',
-      description: 'Bienes Inmuebles'
+      title: 'Paso 3',
+      description: 'Procedencia'
+    },
+    {
+      title: 'Paso 4',
+      description: 'Detalles'
     }
-  ],
-  familiares: [] as Familiar[],
-  bienesInmuebles: [] as BieneInmueble[]
+  ]
 }
 
 const stepsSlicer = createSlice({
@@ -40,27 +40,9 @@ const stepsSlicer = createSlice({
     },
     errorStatus(state) {
       state.estado = 'error'
-    },
-
-    // familiares
-    add(state, action: PayloadAction<Familiar>) {
-      let { payload } = action
-      payload.id = v4()
-      state.familiares.push(payload)
-    },
-
-    // bienes inmuebles
-    addBienInmueble(state, action: PayloadAction<BieneInmueble>) {
-      const { payload } = action
-      payload.id = v4()
-      state.bienesInmuebles.push(payload)
-    },
-    changeStatus(state) {
-      state.poseeInmuebles = !state.poseeInmuebles
     }
   }
 })
 
 export default stepsSlicer.reducer
-export const { next, prev, errorStatus, add, addBienInmueble, changeStatus } =
-  stepsSlicer.actions
+export const { next, prev, errorStatus } = stepsSlicer.actions

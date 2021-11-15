@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const BackgroundPortada = styled.div`
   height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-`;
+`
 
 export const StepActions = styled.div`
   margin-top: 24px;
-`;
+`
 
 export const StepContent = styled.div`
   width: 100%;
@@ -23,14 +23,16 @@ export const StepContent = styled.div`
   justify-content: space-between;
   border: 1px dashed #e9e9e9;
   background-color: #fafafa;
-`;
+`
 
 export const ImagePeopleDoc = styled.figure`
   margin: 30px -30px;
   img {
     width: 100%;
+    height: 200px;
+    padding-bottom: 10px;
   }
-`;
+`
 
 export const FlexContainer = styled.div`
   display: flex;
@@ -74,13 +76,13 @@ export const FlexContainer = styled.div`
           font-size: 1.4rem;
           color: #9984ea;
           font-weight: 600;
-          font-family: "Roboto";
+          font-family: 'Roboto';
         }
       }
       .ant-steps-item-content {
         .ant-steps-item-title {
           color: #907ae9;
-          font-family: "Lato";
+          font-family: 'Lato';
           font-size: 1.1rem;
           font-weight: bold;
         }
@@ -88,8 +90,15 @@ export const FlexContainer = styled.div`
           padding: 0px;
           color: #c3b4f9;
           font-size: 1.5rem;
-          font-family: "Roboto";
+          font-family: 'Roboto';
           font-weight: bold;
+        }
+      }
+      &.ant-steps-item-error {
+        .ant-steps-item-icon,
+        .ant-steps-item-icon .ant-steps-icon {
+          border-color: #ed0e28;
+          color: #ed0e28 !important;
         }
       }
     }
@@ -106,36 +115,40 @@ export const FlexContainer = styled.div`
       }
     }
   }
-`;
+`
 
 export const H1Title = styled.h1`
   text-align: left;
   padding-top: 20px;
   margin-bottom: 0px;
-  font-family: "Lato";
+  font-family: 'Lato';
   font-weight: bold;
   ~ p {
     font-size: 1rem;
     text-align: left;
-    font-family: "Roboto";
+    font-family: 'Roboto';
   }
-`;
+`
 
 export const H2Title = styled.h2`
   text-align: left;
   font-weight: 800;
-  font-family: "Roboto";
-`;
+  font-family: 'Roboto';
+`
 
 export const DivContainerForm = styled.div`
   padding: 40px 40px 40px;
   background-color: white;
   .ant-form-item-label,
   .ant-form-item-control {
-    font-family: "Lato";
+    font-family: 'Lato';
   }
-`;
+`
 
-export const DivContainerFormLogo = styled.div`
+export const DivContainerFormLogo = styled.div``
 
-`;
+export const DescriptionH3 = styled.h3`
+  span {
+    color: #603dd2;
+  }
+`

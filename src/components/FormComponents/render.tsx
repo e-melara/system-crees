@@ -1,20 +1,22 @@
-import * as React from "react";
+import * as React from 'react'
 
 // components
-import { Familiares } from "./Familiares";
-import { BienesImuebles } from "./BienesImuebles";
-import { DatosGenerales } from "./DatosGenerales";
+import { Equipos } from './Equipos'
+import { CentroEscolar } from './CentroEscolar'
+import { Details } from './Details'
+import { PersonasProcedencia } from './PersonasProcedencia'
 
 interface ElementInfaces {
-  [key: number]: React.ReactElement;
+  [key: number]: React.ReactElement
 }
 
 const elements: ElementInfaces = {
-  0: <DatosGenerales />,
-  1: <Familiares />,
-  2: <BienesImuebles />
-};
+  0: <CentroEscolar />,
+  1: <Equipos />,
+  2: <PersonasProcedencia />,
+  3: <Details />
+}
 
 export const RenderElement = (props: { keyElement: number }) => {
-  return elements[props.keyElement] || elements[0];
-};
+  return elements[props.keyElement] || elements[0]
+}

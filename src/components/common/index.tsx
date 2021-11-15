@@ -1,4 +1,5 @@
 export { InputType } from './InputType'
 export { SelectType } from './SelectTtype'
-export { InputNumberType } from './InputTypeNumber'
+export { SearchInput } from './SearchInput'
 export { TextAreaType } from './TextAreaType'
+export { InputNumberType } from './InputTypeNumber'
