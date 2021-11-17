@@ -27,7 +27,7 @@ export const SearchInput: React.FC<SearchTypeInterface> = ({
 }) => {
   return (
     <Col {...column}>
-      <Form.Item {...item}>
+      <Form.Item {...item} hasFeedback>
         <Search {...input} autoComplete="off" />
       </Form.Item>
     </Col>

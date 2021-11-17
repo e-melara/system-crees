@@ -39,13 +39,7 @@ export const FormularioPage: React.FC = React.memo(() => {
         <StepContent>
           <DivContainerForm>
             <DivContainerFormLogo>
-              <h2>NUEVA REPARACION</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Sapiente quas nihil aperiam dolores corrupti vitae a
-                perspiciatis nisi nobis! Fugit necessitatibus minima in aliquam
-                facere harum consequatur, quis commodi magnam.
-              </p>
+              <h2>MANTENIMIENTO</h2>
             </DivContainerFormLogo>
             {<RenderElement keyElement={current} />}
           </DivContainerForm>

@@ -9,10 +9,11 @@ import {
   Button
 } from 'antd'
 
-import { LeftOutlined } from '@ant-design/icons'
+import { LeftOutlined, SendOutlined } from '@ant-design/icons'
 
 import { DescriptionH3 } from 'src/styles'
 import { prev } from 'src/redux/slicers/steps'
+import { mantenimientoSave } from 'src/redux/slicers/thunk/centro'
 import { useAppSelector, useAppDispatch } from 'src/redux/hooks'
 
 const columns = [
@@ -46,41 +47,57 @@ export const Details = () => {
     key: e.key
   }))
 
+  const handlerClickSaveSend = React.useCallback(() => {
+    dispatch(
+      mantenimientoSave({
+        centro,
+        procedencia,
+        equipos
+      })
+    )
+  }, [centro, procedencia, equipos, dispatch])
+
   return (
     <>
       <Row gutter={[24, 24]}>
-        <PageHeader title="Centro Escolar">
-          <Descriptions column={3}>
-            <Descriptions.Item>
-              <DescriptionH3>
-                Codigo: <span>{centro.codigo}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-            <Descriptions.Item>
-              <DescriptionH3>
-                Nombre: <span>{centro.nombre}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-            <Descriptions.Item>
-              <DescriptionH3>
-                Municipio: <span>{centro.municipio}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-            <Descriptions.Item span={2}>
-              <DescriptionH3>
-                Director:
-                <span>
-                  {centro.dirNombres} {centro.dirApellidos}
-                </span>
-              </DescriptionH3>
-            </Descriptions.Item>
-            <Descriptions.Item span={2}>
-              <DescriptionH3>
-                DUI: <span>{centro.dirDUI}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-          </Descriptions>
-        </PageHeader>
+        <Col span={24}>
+          <PageHeader>
+            <Descriptions
+              column={3}
+              bordered
+              title="Centro Escolar"
+              size="small"
+            >
+              <Descriptions.Item label="Codigo">
+                <DescriptionH3>
+                  <span>{centro.codigo}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item label="Nombre">
+                <DescriptionH3>
+                  <span>{centro.nombre}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item label="Municipio">
+                <DescriptionH3>
+                  <span>{centro.municipio}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item span={2} label="Director">
+                <DescriptionH3>
+                  <span>
+                    {centro.dirNombres} {centro.dirApellidos}
+                  </span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item label="DUI">
+                <DescriptionH3>
+                  <span>{centro.dirDUI}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+            </Descriptions>
+          </PageHeader>
+        </Col>
         <Divider>Equipos</Divider>
         <Col span={24}>
           <Table
@@ -92,66 +109,79 @@ export const Details = () => {
           />
         </Col>
         <Divider>Datos</Divider>
-        <PageHeader
-          title={'Responsable'}
-          subTitle={
-            procedencia.directorOrPersona?.type === 1 ? 'Director' : 'Persona'
-          }
-        >
-          <Descriptions column={4}>
-            <Descriptions.Item span={2}>
-              <DescriptionH3>
-                Nombre completo:
-                <span>{procedencia.directorOrPersona?.nombresCompleto}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-            <Descriptions.Item>
-              <DescriptionH3>
-                Telefono:
-                <span>{procedencia.directorOrPersona?.phone}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-            <Descriptions.Item>
-              <DescriptionH3>
-                Documento:
-                <span>{procedencia.directorOrPersona?.documento}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-          </Descriptions>
-        </PageHeader>
-        <PageHeader
-          title="Procendecia"
-          subTitle={
-            procedencia.studentOrTeacher?.type === 3 ? 'Estudiante' : 'Docente'
-          }
-        >
-          <Descriptions column={3}>
-            <Descriptions.Item span={2}>
-              <DescriptionH3>
-                Nombre completo:
-                <span>{procedencia.studentOrTeacher?.nombresCompleto}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-            <Descriptions.Item>
-              <DescriptionH3>
-                Documento:
-                <span>{procedencia.studentOrTeacher?.documento}</span>
-              </DescriptionH3>
-            </Descriptions.Item>
-          </Descriptions>
-        </PageHeader>
-        <PageHeader title="Responsable de Firma" subTitle="CEDE">
-          <Descriptions column={1}>
-            <Descriptions.Item>
-              {procedencia.firmaCEDE?.title}
-            </Descriptions.Item>
-          </Descriptions>
-        </PageHeader>
-        <PageHeader title="Observacion">
-          <Descriptions column={1}>
-            <Descriptions.Item>{procedencia.observacion}</Descriptions.Item>
-          </Descriptions>
-        </PageHeader>
+        <Col span={24}>
+          <PageHeader>
+            <Descriptions column={2} title="Responsable" bordered size="small">
+              <Descriptions.Item label="Tipo de persona">
+                <DescriptionH3>
+                  <span>
+                    {procedencia.directorOrPersona?.type === 1
+                      ? 'Director'
+                      : 'Familiar'}
+                  </span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item label="Nombre completo">
+                <DescriptionH3>
+                  <span>{procedencia.directorOrPersona?.nombresCompleto}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item label="Telefono">
+                <DescriptionH3>
+                  <span>{procedencia.directorOrPersona?.phone}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item label="DUI">
+                <DescriptionH3>
+                  <span>{procedencia.directorOrPersona?.documento}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+            </Descriptions>
+          </PageHeader>
+          <PageHeader>
+            <Descriptions column={3} bordered title="Procedencia">
+              <Descriptions.Item label="Tipo de persona">
+                <DescriptionH3>
+                  <span>
+                    {procedencia.studentOrTeacher?.type === 3
+                      ? 'Estudiante'
+                      : 'Docente'}
+                  </span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item label="Nombre completo">
+                <DescriptionH3>
+                  <span>{procedencia.studentOrTeacher?.nombresCompleto}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+              <Descriptions.Item
+                label={procedencia.studentOrTeacher?.type === 3 ? 'NIE' : 'NUP'}
+              >
+                <DescriptionH3>
+                  <span>{procedencia.studentOrTeacher?.documento}</span>
+                </DescriptionH3>
+              </Descriptions.Item>
+            </Descriptions>
+          </PageHeader>
+          <PageHeader>
+            <Descriptions
+              column={1}
+              title="Responsable de Firma - CEDE"
+              bordered
+            >
+              <Descriptions.Item label="Persona a cargo">
+                {procedencia.firmaCEDE?.title}
+              </Descriptions.Item>
+            </Descriptions>
+          </PageHeader>
+          <PageHeader>
+            <Descriptions column={1} title="Observacion" bordered>
+              <Descriptions.Item label="Detalle">
+                {procedencia.observacion}
+              </Descriptions.Item>
+            </Descriptions>
+          </PageHeader>
+        </Col>
       </Row>
       <Row justify="space-between" style={{ margin: '20px 0' }}>
         <Button
@@ -162,8 +192,13 @@ export const Details = () => {
         >
           Anterior
         </Button>
-        <Button type="primary" size="large">
-          Siguiente
+        <Button
+          type="primary"
+          size="large"
+          icon={<SendOutlined />}
+          onClick={handlerClickSaveSend}
+        >
+          Enviar
         </Button>
       </Row>
     </>

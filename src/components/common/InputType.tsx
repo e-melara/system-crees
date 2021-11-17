@@ -23,7 +23,7 @@ export const InputType: React.FC<InputTypeInterface> = ({
 }) => {
   return (
     <Col {...column}>
-      <Form.Item {...item}>
+      <Form.Item {...item} hasFeedback>
         {/* <Form.Item > */}
         <Input {...input} />
       </Form.Item>

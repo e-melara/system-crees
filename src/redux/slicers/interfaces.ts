@@ -37,18 +37,12 @@ export interface CentroEscolarInterface {
   dirApellidos: string
 }
 
-export enum TypePersona {
-  DIRECTOR,
-  PERSONA,
-  STUDENT,
-  TEACHER,
-}
 
 export interface Persona {
   phone?: string
   nombresCompleto: string
   documento: string
-  type: TypePersona
+  type: number // 1 Director, 2 Persona, 3 Estudiante 4 Docente
 }
 
 export interface Procedencia {

@@ -6,7 +6,6 @@ import {
   Equipo,
   Procedencia,
   CentroState,
-  TypePersona,
   ResponseConnection,
   CentroEscolarInterface
 } from './interfaces'
@@ -41,8 +40,6 @@ const CentroEscolarSlicer = createSlice({
     },
     addProcedencia(state, action: PayloadAction<Procedencia>) {
       const { payload } = action
-      console.log(payload.studentOrTeacher?.type)
-
       state.procedencia = {
         observacion: payload.observacion,
         studentOrTeacher: {
@@ -53,16 +50,16 @@ const CentroEscolarSlicer = createSlice({
         firmaCEDE: payload.firmaCEDE
       }
 
-      if (payload.directorOrPersona?.type === TypePersona.DIRECTOR) {
+      if (payload.directorOrPersona?.type === 1) {
         state.procedencia.directorOrPersona = {
-          type: TypePersona.DIRECTOR,
+          type: 1,
           documento: state.centro.dirDUI,
           phone: payload.directorOrPersona?.phone,
           nombresCompleto: `${state.centro.dirNombres} ${state.centro.dirApellidos}`
         }
       } else {
         state.procedencia.directorOrPersona = {
-          type: TypePersona.PERSONA,
+          type: 2,
           phone: payload.directorOrPersona?.phone,
           documento: payload.directorOrPersona?.documento || '',
           nombresCompleto: payload.directorOrPersona?.nombresCompleto || ''

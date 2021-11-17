@@ -17,3 +17,10 @@ export const initialDataCentroEscolar = createAsyncThunk(
     return await Connection.getInstance().post('/centro/new', {})
   }
 )
+
+export const mantenimientoSave = createAsyncThunk(
+  '@centro/mantenimiento/save',
+  async (data: any) => {
+    await Connection.getInstance().post('/centro/save', { ...data })
+  }
+)

@@ -3,11 +3,15 @@ import { Form, Divider, Button, Row } from 'antd'
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
 import { H1Title } from 'src/styles'
-import { TypePersona } from 'src/redux/slicers/interfaces'
 import { next, prev, errorStatus } from 'src/redux/slicers/steps'
 import { addProcedencia } from 'src/redux/slicers/centro-escolar'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
-import { SelectType, InputType, TextAreaType } from 'src/components/common'
+import {
+  SelectType,
+  InputType,
+  TextAreaType,
+  InputTypeMask
+} from 'src/components/common'
 
 export const PersonasProcedencia = () => {
   const [form] = Form.useForm()
@@ -23,12 +27,12 @@ export const PersonasProcedencia = () => {
 
   const options = [
     { value: 3, title: 'Estudiante' },
-    { value: 4, title: 'Maestro' }
+    { value: 4, title: 'Docente' }
   ]
 
   const optionsFirma = [
     { value: 1, title: 'Director' },
-    { value: 2, title: 'Otros' }
+    { value: 2, title: 'Familiar' }
   ]
 
   const hanlderChangeSelect = React.useCallback((item: number) => {
@@ -49,17 +53,11 @@ export const PersonasProcedencia = () => {
         addProcedencia({
           studentOrTeacher: {
             documento: values.nieOrNup,
-            type:
-              values.studentOrTeacher === 3
-                ? TypePersona.STUDENT
-                : TypePersona.TEACHER,
+            type: values.studentOrTeacher,
             nombresCompleto: values.nombresSTPersona
           },
           directorOrPersona: {
-            type:
-              values.tipoDOFirma === 1
-                ? TypePersona.DIRECTOR
-                : TypePersona.PERSONA,
+            type: values.tipoDOFirma,
             phone: values.phoneDOPersona,
             documento: values.duiPersonaFirma || '',
             nombresCompleto: values.nombresFirmaPersona || ''
@@ -129,7 +127,13 @@ export const PersonasProcedencia = () => {
             item={{
               label: '',
               name: 'nieOrNup',
-              rules: [{ required: true, message: 'El campo es necesario' }]
+              rules: [
+                {
+                  required: true,
+                  pattern: new RegExp('^[0-9]{5,}$', 'g'),
+                  message: 'El campo es necesario y solo puede contener numeros'
+                }
+              ]
             }}
           />
           <InputType
@@ -167,7 +171,28 @@ export const PersonasProcedencia = () => {
           />
           {!isDirector && (
             <>
-              <InputType
+              <InputTypeMask
+                column={{ span: 4 }}
+                item={{
+                  name: 'duiPersonaFirma',
+                  label: '',
+                  help: 'Formato: 00000000-0',
+                  rules: [
+                    {
+                      required: true,
+                      pattern: new RegExp('^[0-9]{8}-[0-9]{1}$', 'g'),
+                      message:
+                        'El campo es necesario y solo puede contener numeros'
+                    }
+                  ]
+                }}
+                input={{
+                  allowClear: true,
+                  mask: '99999999-9',
+                  placeholder: 'DUI de la persona'
+                }}
+              />
+              {/* <InputType
                 column={{ span: 4 }}
                 input={{
                   placeholder: 'DUI de la persona',
@@ -180,7 +205,7 @@ export const PersonasProcedencia = () => {
                     { required: !isDirector, message: 'El campo es necesario' }
                   ]
                 }}
-              />
+              /> */}
               <InputType
                 column={{ span: 10 }}
                 input={{
@@ -197,7 +222,27 @@ export const PersonasProcedencia = () => {
               />
             </>
           )}
-          <InputType
+          <InputTypeMask
+            column={{ span: 4 }}
+            item={{
+              name: 'phoneDOPersona',
+              label: '',
+              help: 'Formato: 0000-0000, Solo puede comenzar con 2,6,7',
+              rules: [
+                {
+                  required: true,
+                  pattern: new RegExp('^[2,6,7]{1}[0-9]{3}-[0-9]{4}$', 'g'),
+                  message: 'El campo es necesario y solo puede contener numeros'
+                }
+              ]
+            }}
+            input={{
+              mask: '9999-9999',
+              placeholder: 'Telefono del encargado',
+              allowClear: true
+            }}
+          />
+          {/* <InputType
             column={{ span: 6 }}
             input={{
               placeholder: 'Telefono del encargado',
@@ -208,7 +253,7 @@ export const PersonasProcedencia = () => {
               name: 'phoneDOPersona',
               rules: [{ required: true, message: 'El campo es necesario' }]
             }}
-          />
+          /> */}
         </Row>
         <H1Title>Cede</H1Title>
         <p>Seleccione la persona de la CEDE que va firmar el A-F9</p>

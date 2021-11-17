@@ -25,7 +25,7 @@ export const InputNumberType: React.FC<InputTypeNumberInterface> = ({
 }) => {
   return (
     <Col {...column}>
-      <Form.Item {...item}>
+      <Form.Item {...item} hasFeedback>
         <InputNumber {...input} className='input-width' />
       </Form.Item>
     </Col>

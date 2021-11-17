@@ -1,26 +1,24 @@
 import React from 'react'
+import InputMask from 'react-input-mask'
 import { Col, Input, Form } from 'antd'
 
-const { TextArea } = Input
-
-interface TextAreaTypeInterface {
+interface InputTypeInterface {
   column: { span: number }
   item: {
     name: string
     label: string
-    extra?: string
+    help?: string
     rules?: Array<Object>
   }
   input: {
-    rows: number
-    cols: number
     allowClear?: boolean
     placeholder: string
     disabled?: boolean
+    mask: string
   }
 }
 
-export const TextAreaType: React.FC<TextAreaTypeInterface> = ({
+export const InputTypeMask: React.FC<InputTypeInterface> = ({
   column,
   item,
   input
@@ -28,7 +26,9 @@ export const TextAreaType: React.FC<TextAreaTypeInterface> = ({
   return (
     <Col {...column}>
       <Form.Item {...item} hasFeedback>
-        <TextArea {...input} />
+        <InputMask mask={input.mask} autoComplete="off">
+          {(inputProps: any) => <Input {...input} {...inputProps} />}
+        </InputMask>
       </Form.Item>
     </Col>
   )

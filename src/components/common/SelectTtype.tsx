@@ -20,11 +20,10 @@ export const SelectType: React.FC<SelectTypeInterface> = ({
   item,
   options,
   onChange,
-  optionDefault
 }) => {
   return (
     <Col {...column}>
-      <Form.Item {...item}>
+      <Form.Item {...item} hasFeedback>
         <Select placeholder={item.placeholder} onChange={onChange}>
           {options &&
             options.map((item) => (

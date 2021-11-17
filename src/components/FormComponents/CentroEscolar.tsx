@@ -10,14 +10,14 @@ import {
   Descriptions
 } from 'antd'
 
-import { RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from '@ant-design/icons'
 
 // redux
 import { next, errorStatus } from 'src/redux/slicers/steps'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { searchCentroEscolar } from 'src/redux/slicers/thunk/centro'
 
-import { H1Title, H2Title, DescriptionH3 } from 'src/styles'
+import { H1Title, DescriptionH3 } from 'src/styles'
 import { SearchInput } from 'src/components/common'
 
 export const CentroEscolar: React.FC = () => {
@@ -74,36 +74,39 @@ export const CentroEscolar: React.FC = () => {
         {search && (
           <>
             <Divider />
-            <H2Title>Informacion</H2Title>
             <PageHeader>
-              <Descriptions size="middle" column={3}>
-                <Descriptions.Item>
+              <Descriptions
+                size="middle"
+                column={4}
+                title="Centro Escolar"
+                bordered
+              >
+                <Descriptions.Item label="Codigo">
                   <DescriptionH3>
-                    Codigo: <span>{centro.codigo}</span>
+                    <span>{centro.codigo}</span>
                   </DescriptionH3>
                 </Descriptions.Item>
-                <Descriptions.Item>
+                <Descriptions.Item label="Centro Escolar" span={2}>
                   <DescriptionH3>
-                    Centro Escolar: <span>{centro.nombre}</span>
+                    <span>{centro.nombre}</span>
                   </DescriptionH3>
                 </Descriptions.Item>
-                <Descriptions.Item>
+                <Descriptions.Item label="Municipio">
                   <DescriptionH3>
-                    Municipio: <span>{centro.municipio}</span>
+                    <span>{centro.municipio}</span>
                   </DescriptionH3>
                 </Descriptions.Item>
 
-                <Descriptions.Item span={2}>
+                <Descriptions.Item label="Nombre del director(a)" span={3}>
                   <DescriptionH3>
-                    Nombre del director(a):
                     <span>
                       {centro.dirNombres} {centro.dirApellidos}
                     </span>
                   </DescriptionH3>
                 </Descriptions.Item>
-                <Descriptions.Item>
+                <Descriptions.Item label="DUI">
                   <DescriptionH3>
-                    DUI: <span>{centro.dirDUI}</span>
+                    <span>{centro.dirDUI}</span>
                   </DescriptionH3>
                 </Descriptions.Item>
               </Descriptions>

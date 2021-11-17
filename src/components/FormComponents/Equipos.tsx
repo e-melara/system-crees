@@ -1,7 +1,13 @@
 import { v4 } from 'uuid'
 import * as React from 'react'
 import { Table, Button, Row, Modal, Form, message } from 'antd'
-import { PlusCircleFilled, PlusOutlined, RestOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons'
+import {
+  PlusCircleFilled,
+  PlusOutlined,
+  RestOutlined,
+  RightOutlined,
+  LeftOutlined
+} from '@ant-design/icons'
 
 import { H1Title } from 'src/styles'
 import { next, prev } from 'src/redux/slicers/steps'
@@ -114,7 +120,12 @@ export const Equipos = () => {
         rowKey="id"
       />
       <Row justify="space-between" style={{ margin: '20px 0' }}>
-        <Button type="default" icon={<LeftOutlined />} size="large" onClick={() => dispatch(prev())}>
+        <Button
+          type="default"
+          icon={<LeftOutlined />}
+          size="large"
+          onClick={() => dispatch(prev())}
+        >
           Anterior
         </Button>
         <Button
@@ -182,7 +193,13 @@ export const Equipos = () => {
               item={{
                 label: '',
                 name: 'serie',
-                rules: [{ required: true, message: 'La serie es necesaria' }]
+                rules: [
+                  {
+                    required: true,
+                    pattern: new RegExp('^[A-Za-z0-9]{3,15}$','g'),
+                    message: 'El campo es necesario y solo puede contener letras y/o numeros'
+                  }
+                ]
               }}
             />
           </Row>
