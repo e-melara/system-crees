@@ -1,5 +1,5 @@
-import { message } from 'antd'
-import axios, { AxiosInstance } from 'axios'
+import { message as msg } from 'antd'
+import axios, { AxiosError, AxiosInstance } from 'axios'
 
 import { BASE_URL } from 'src/consts'
 
@@ -28,15 +28,12 @@ class Connection {
 
     this.axiosConfig.interceptors.response.use(
       (response) => response.data,
-      (error) => {
-        const { status } = error.response
-        if (status !== 401) {
-          message.error(
-            'Tenemos un problema con el servidor, intenta mas tarde'
-          )
-          return
+      (err: AxiosError) => {
+        const { response } = err
+        if (response?.status === 401) {
+          localStorage.removeItem('token')
         }
-        return { ...error.response.data, status }
+        return Promise.reject(response)
       }
     )
   }
@@ -47,7 +44,7 @@ class Connection {
 
   // Metodos
   async login(email: string, password: string): Promise<any> {
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
       try {
         const data: any = await this.post('/login', {
           username: email,
@@ -55,8 +52,10 @@ class Connection {
         })
         localStorage.setItem('token', data.token)
         resolve({ ...data })
-      } catch (error) {
-        console.error(error)
+      } catch (error: any) {
+        const { message } = error.data
+        msg.error(message)
+        reject(message)
       }
     })
   }
@@ -79,7 +78,9 @@ class Connection {
         .then((response) => {
           resolve(response)
         })
-        .catch((error) => reject(error))
+        .catch((error) => {
+          reject(error?.data)
+        })
     })
   }
 

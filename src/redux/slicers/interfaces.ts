@@ -37,7 +37,6 @@ export interface CentroEscolarInterface {
   dirApellidos: string
 }
 
-
 export interface Persona {
   phone?: string
   nombresCompleto: string
@@ -67,4 +66,26 @@ export interface CentroState {
   equipos: Equipo[]
   procedencia: Procedencia
   centro: CentroEscolarInterface
+}
+
+// interfaces para auth
+
+export interface Auth {
+  nombres: string
+  apellidos: string
+  username: string
+  token: string
+  user: number
+}
+
+export interface AuthState {
+  auth?: Auth
+  loading: boolean
+  checking: boolean
+  isAuthenticated: boolean
+}
+
+// interfaz ui
+export interface UIState {
+  collapse: boolean
 }

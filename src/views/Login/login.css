@@ -1,0 +1,93 @@
+.layout-complete {
+  min-height: 100vh;
+}
+
+.figure-logo {
+  margin: 0px;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #183bb7;
+}
+
+.figure-logo img {
+  width: 100%;
+}
+
+.background-login {
+  background-size: cover;
+  background-image: url('../../assets/login_bg.jpeg');
+}
+
+.contenedor-panel-login {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form-panel {
+  padding: 30px 12px;
+}
+.login-main {
+  width: 450px;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: white;
+  -webkit-box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+  box-shadow: 0 0 37px rgb(8 21 66 / 5%);
+}
+.logo-login {
+  display: flex;
+  justify-content: center;
+}
+.logo-login img {
+  height: 200px;
+}
+.theme-form h4 {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.theme-form p {
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: #899;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  line-height: 1.5;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem !important;
+  background-color: #f3f3ff !important;
+  -webkit-transition: all 0.3s ease !important;
+  transition: all 0.3s ease !important;
+  border-color: #efefef !important;
+  font-size: 1rem !important;
+  color: #636363 !important;
+  padding: 10px !important;
+}
+
+.form-input:focus {
+  background-color: #f3f3ff;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+  border: 1px solid #b9c1cc !important;
+}
+
+.form-input-label label {
+  font-size: 1.1rem !important;
+  font-weight: 500;
+}
+
+.ant-form-item-explain.ant-form-item-explain-error {
+  margin: 10px 0;
+  text-align: right;
+}

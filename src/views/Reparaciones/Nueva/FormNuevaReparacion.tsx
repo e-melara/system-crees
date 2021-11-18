@@ -7,16 +7,16 @@ import {
   ImagePeopleDoc,
   DivContainerForm,
   DivContainerFormLogo
-} from '../styles'
+} from 'src/styles'
 
 // hooks redux
-import LogoImg from '../assets/logo.svg'
-import { useAppSelector } from '../redux/hooks'
-import { RenderElement } from '../components/FormComponents/render'
+import LogoImg from 'src/assets/logo.svg'
+import { useAppSelector } from 'src/redux/hooks'
+import { RenderElement } from './FormComponents/render'
 
 const { Step } = Steps
 
-export const FormularioPage: React.FC = React.memo(() => {
+export const FormNuevaReparacion: React.FC = React.memo(() => {
   const { current, items, estado } = useAppSelector((state) => state.steps)
   return (
     <>

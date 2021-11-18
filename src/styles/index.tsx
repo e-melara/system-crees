@@ -150,5 +150,6 @@ export const DivContainerFormLogo = styled.div``
 export const DescriptionH3 = styled.h3`
   span {
     color: #603dd2;
+    font-size: 1.2rem !important;
   }
 `

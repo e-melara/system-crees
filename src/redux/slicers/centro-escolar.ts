@@ -68,49 +68,48 @@ const CentroEscolarSlicer = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(initialDataCentroEscolar.pending, function (state) {
-        state.loading = true
-      })
-      .addCase(
-        initialDataCentroEscolar.fulfilled,
-        function (state, action: PayloadAction<ResponseConnection>) {
-          const { payload } = action
-          state.loading = false
-          state.data = {
-            loading: true,
-            tipo: payload.data['tipo'],
-            marcas: payload.data['marcas'],
-            personas: payload.data['personas']
-          }
+    builder.addCase(initialDataCentroEscolar.pending, (state) => {
+      state.loading = true
+    })
+    builder.addCase(
+      initialDataCentroEscolar.fulfilled,
+      (state, action: PayloadAction<ResponseConnection>) => {
+        const { payload } = action
+        state.loading = false
+        state.data = {
+          loading: true,
+          tipo: payload.data['tipo'],
+          marcas: payload.data['marcas'],
+          personas: payload.data['personas']
         }
-      )
-      .addCase(searchCentroEscolar.pending, (state) => {
-        state.loading = true
-        state.isNew = false
-        state.search = false
-      })
-      .addCase(
-        searchCentroEscolar.fulfilled,
-        function (state, action: PayloadAction<ResponseConnection>) {
-          const { payload } = action
-          if (payload.ok) {
-            state.search = true
-            state.centro = {
-              codigo: payload.data.codigo,
-              nombre: payload.data.nombre,
-              dirDUI: payload.data.dir_dui,
-              dirNombres: payload.data.dir_nombres,
-              dirApellidos: payload.data.dir_apellidos,
-              municipio: payload.data.municipio.nombre
-            }
-          } else {
-            state.isNew = true
-            message.error(payload.message)
-          }
-          state.loading = false
+      }
+    )
+    builder.addCase(searchCentroEscolar.pending, (state) => {
+      state.loading = true
+      state.isNew = false
+      state.search = false
+    })
+    builder.addCase(
+      searchCentroEscolar.fulfilled,
+      (state, action: PayloadAction<any>) => {
+        const { payload } = action
+        state.search = true
+        state.loading = false
+        state.centro = {
+          codigo: payload.data.codigo,
+          nombre: payload.data.nombre,
+          dirDUI: payload.data.dir_dui,
+          dirNombres: payload.data.dir_nombres,
+          dirApellidos: payload.data.dir_apellidos,
+          municipio: payload.data.municipio.nombre
         }
-      )
+      }
+    )
+    builder.addCase(searchCentroEscolar.rejected, (state, action) => {
+      state.isNew = true
+      state.loading = false
+      message.error(action.error.message)
+    })
   }
 })
 
